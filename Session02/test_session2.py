@@ -34,7 +34,7 @@ def test_clear_memory():
     memory_used = memory_usage((session2.critical_function))
     assert (memory_used[len(memory_used)-1] - memory_used[0]) < 4
 
-def test_memory_actually_increaded():
+def test_memory_actually_increased():
     # This test will check whether we are actually increase the memory during running the function f
     memory_used2 = memory_usage((session2.critical_function))
     peak = max(memory_used2)
@@ -63,13 +63,13 @@ def test_readme_contents():
     assert len(readme_words) >= 500, "Make your README.md file interesting! Add atleast 500 words"
 
 def test_readme_proper_description():
-    READMELOOKSGOOD = False
+    READMELOOKSGOOD = True
     f = open("README.md", "r")
     content = f.read()
     f.close()
     for c in README_CONTENT_CHECK_FOR:
-        if c not in README_CONTENT_CHECK_FOR:
-            READMELOOKSGOOD == False
+        if c not in content:
+            READMELOOKSGOOD = False
             pass
     assert READMELOOKSGOOD == True, "You have not described all the functions/class well in your README.md file"
 
@@ -87,12 +87,14 @@ def test_class_repr():
     assert 'object at' not in s.__repr__() and 'object at' not in s_n.__repr__()
 
 def test_fourspace():
-    r''' Returns pass if used four spaces for each level of syntactically \
+    ''' Returns pass if used four spaces for each level of syntactically \
     significant indenting.'''
     lines = inspect.getsource(session2)
-    spaces = re.findall('\n(.+?)[a-zA-Z0-9@]', lines)
+    spaces = re.findall('\n +.', lines)
     for space in spaces:
-        assert (len(space) % 4 > 0 and len(space) != 1), "Your code intentation does not follow PEP8 guidelines"
+        assert re.search('[a-zA-Z#@\'\"]', space), "Your code intentation does not follow PEP8 guidelines"
+        assert len(re.sub(r'[a-zA-Z#@\n\"\']', '', space)) % 4 == 0, \
+        "Your code intentation does not follow PEP8 guidelines" 
 
 def test_function_name_had_cap_letter():
     functions = inspect.getmembers(session2, inspect.isfunction)
@@ -101,5 +103,3 @@ def test_function_name_had_cap_letter():
 
 if __name__ ==  '__main__':
     test_clear_memory()
-
-
