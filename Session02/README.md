@@ -1,9 +1,4 @@
-
-  
-
 # Assignemt 2 - Object Mutability and Interning
-
-  
 
 ## Topics Covered:
 
@@ -37,12 +32,10 @@
 
 **TO-DO**
 
-  
 
 ## Classes and Functions Used:
 
   
-
 ### Something -> Class inherited from **object**
 
     class Something(object):
@@ -71,7 +64,7 @@ The class has only one variable 'something_new', which is used later by directly
 		
 		def  __repr__(self):
 			return  f'Hey You Again Found Something New'
-The class have two inputs, *i* which is an integer and another something*, which is use to assign another class object to this variable.
+The class have two inputs, *i* which is an integer and another variable *something*, which is use to assign another class object to this variable.
 
 ### add_something -> Function
 
