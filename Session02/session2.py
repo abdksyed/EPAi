@@ -60,7 +60,7 @@ def clear_memory(collection: List[Something]):
 
 
 def critical_function():
-    '''A Function will runs the above *add_something* fucntion for 1024*128(131,072) times
+    '''This Function will runs the above *add_something* fucntion for 1024*128(131,072) times
     and create tons of cyclic references loading the memory.
     At last calling clear_memory to clean up the memory.'''
 
@@ -76,6 +76,12 @@ def critical_function():
 
 # DO NOT CHANGE THIS PROGRAM
 def compare_strings_old(n):
+    '''The function has two very long strings with whitesapces, so it is not interned.
+	The function take a number *n* and checks whether the two strings are exact same
+	or not for n times. (Here exactly same refers to same value and in same location).
+	And also, the second part in the code check for the letter 'd' in the list of 
+	characters of the string for n times.'''
+
     a = 'a long string that is not intered' * 200
     b = 'a long string that is not intered' * 200
     for i in range(n):
