@@ -1,13 +1,44 @@
-import random
+# Assignemt 6 - First Class Functions Part I
 
-vals = ['2', '3', '4', '5', '6', '7', '8',
-        '9', '10', 'jack', 'queen', 'king', 'ace']
-suits = ['spades', 'clubs', 'hearts', 'diamonds']
-internal_vals = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+## Topics Covered:
 
+* Default Values
+
+* Docstrings and Annotations
+
+* Lambda Expressions
+
+* Fucntional Introspection
+
+* Callables
+
+* Map, Filter and Zip
+
+## Link to Class Notebook (along with Notes)
+
+[Class Notebook with extra Notes.](https://github.com/abdksyed/EPAi/blob/master/Session06_First Class Functions Part I/notebooks/Session06_Notes.ipynb)
+
+
+# Pokers
+
+This is a fun assignment, where we need to check, according to the rules of Pokers, which of the player hand of cards wins. The winner is decided on the basis of rank allotted according to the following sequence:
+
+![](poker.jpg)
+
+But first we need to create a deck of cards, right? Let's start from the beginning.
+
+## Creating the deck
+
+
+Method 1:
+
+```python
 deck_lam = list(map(lambda x: (x[0], x[1]), zip(vals*4, suits*13)))
+```
 
+Method 2:
 
+```python
 def create_deck(vals: 'List/Set of Values',
                 suits: 'List/Set of Suits',
                 number_of_decks: 'Total Number of Decks to be Used' = 1) -> 'Set of Deck':
@@ -26,20 +57,15 @@ def create_deck(vals: 'List/Set of Values',
             for val in vals:
                 deck.add((val, suit))
     return deck
+```
 
+## Checking the rank
 
-def conv_card_to_num(card: 'Value of the Card in String') -> 'Value of Card in int':
-    if card == 'ace':
-        return 14
-    if card == 'king':
-        return 13
-    if card == 'queen':
-        return 12
-    if card == 'jack':
-        return 11
-    return int(card)
+Next, to declare a winner, we need to find the rank of the card sets with each player and then decide on the winner. To reduce the complexity, in this section, we discuss the function whose task is to just return the rank according to the rules. All the checks on the cards will be performed by the function which calls this and we would discuss that one in the coming section.
 
+Let's look at the function.
 
+```python
 def royal_flush(hand):
     '''
     Check if hand is a Royal Flush.
@@ -214,8 +240,28 @@ def high_card(hand):
     val = [conv_card_to_num(x[0]) for x in hand]
     val.sort()
     return (10, f'Only hope is your High Card must be good enough(Rank:10)'), tuple(val[::-1])
+```
 
+This function not only returns the rank, but also returns the card values oin proper orders in the set to help in tie braking, if required.
 
+## Misc Functions:
+
+This function converts the Jack, Quen, King and Ace to respective values of 11, 12, 13 and 14.
+```python
+def conv_card_to_num(card: 'Value of the Card in String') -> 'Value of Card in int':
+    if card == 'ace':
+        return 14
+    if card == 'king':
+        return 13
+    if card == 'queen':
+        return 12
+    if card == 'jack':
+        return 11
+    return int(card)
+```
+
+This function creates two random players, with each player holding either 3/4/5 cards.
+```python
 def create_player(deck, cards_per_player=5):
     print('----SHUFFLING---')
     p1_hand = random.sample(tuple(deck), cards_per_player)
@@ -226,8 +272,15 @@ def create_player(deck, cards_per_player=5):
     print('------------------------------------------')
 
     return p1_hand, p2_hand
+```
 
+## Who's the winner!
 
+The Final function, to check who is the winner based on the hand (set of cards) the player gets.  
+The function first sets the win cases according to the number fo cards per player.  
+Then for each rank in win cases, the hand is passed and checked if it holds the patterns from Rank 1 to 10, and it stops checking if it find the rank, or else at last Rank 10 is assigned.
+
+```python
 def winner(p1_hand, p2_hand):
     win_cases = {
         5: [royal_flush, straight_flush, four_kind, full_house, flush, straight, three_kind, two_pair, one_pair, high_card],
@@ -270,6 +323,4 @@ def winner(p1_hand, p2_hand):
                 return f'Congratulations Player 2, you have Won! as you had better high card {p2_c} than {p1_c}'
         else:
             return 'MAN....this is very rare....Its a TOTAL TIE!'
-
-
-#print(winner(*create_player(create_deck(vals, suits), 5)))
+```
