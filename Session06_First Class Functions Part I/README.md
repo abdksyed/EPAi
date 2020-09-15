@@ -16,7 +16,7 @@
 
 ## Link to Class Notebook (along with Notes)
 
-[Class Notebook with extra Notes.](https://github.com/abdksyed/EPAi/blob/master/Session06_First Class Functions Part I/notebooks/Session06_Notes.ipynb)
+[Class Notebook with extra Notes.](https://github.com/abdksyed/EPAi/blob/master/Session06_First%20Class%20Functions%20Part%20I/notebooks/Session06_Notes.ipynb)
 
 
 # Pokers

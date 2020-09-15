@@ -12,7 +12,7 @@
 
 ## Link to Class Notebook (along with Notes)
 
-[Class Notebook with extra Notes.](https://github.com/abdksyed/EPAi/blob/master/Session07_First Class Functions Part II/notebooks/Session07_Notes.ipynb)
+[Class Notebook with extra Notes.](https://github.com/abdksyed/EPAi/blob/master/Session07_First%20Class%20Functions%20Part%20II/notebooks/Session07_Notes.ipynb)
 
 ## map()
 

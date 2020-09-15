@@ -12,7 +12,7 @@
 
 ## Link to Class Notebook (along with Notes)
 
-[Class Notebook with extra Notes.](https://github.com/abdksyed/EPAi/blob/master/Session08_Scopes and Closures/notebooks/Session08_Notes.ipynb)
+[Class Notebook with extra Notes.](https://github.com/abdksyed/EPAi/blob/master/Session08_Scopes%20and%20Closures/notebooks/Session08_ClassRoom.ipynb)
 
 # Scopes and Closures
 
