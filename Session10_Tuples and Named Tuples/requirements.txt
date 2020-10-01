@@ -1,0 +1,5 @@
+pytest
+memory-profiler
+pandas
+faker
+matplotlib
